@@ -33,3 +33,16 @@ It should be able to return all configuration errors in a single object: If ther
 Do we need to implement a lazy loading mechanism? For example, if settings are in the database, and you don't need the settings right now, you could grab them on the first instance you need them.
 
 How do we refresh settings? Some advantages of existing configuration objects built into .NET are that they can intelligently refresh settings at runtime if they see a change. We don't want to lose this functionality if possible. Can we easily hook into these in SystemSettings? *Can you consume events to capture changes in configuration sources?*
+
+### Next step - Create a proof of concept!
+Scope:
+ * Get a database connection string.
+ * Get a URL.
+ * Get an integer setting *(think of a realistic scenario - "NumberOfRetries" maybe?)*.
+ * Create validation rules for all three types.
+ * Create a mandatory validation rule to enforce the existence of a setting.
+ * Implement source "loaders" for environment variables, app/web.config and appSettings.json.
+ * Store common validation rules in a library.
+ * Allow precedence rules to be defined by the host application.
+ * Create an AND/OR conditions in validation rules which rely on multiple, independent settings *(e.g. if one setting is supplied another setting may be expected too)*.
+ * Use generics to allow the host application to pass in an object listing the settings it needs. SystemSettings will retrieve, verify and map these settings back into a response object.
